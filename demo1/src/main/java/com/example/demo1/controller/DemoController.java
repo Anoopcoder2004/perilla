@@ -3,6 +3,8 @@ package com.example.demo1.controller;
 import com.example.demo1.model.User;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public  class DemoController {
@@ -17,8 +19,8 @@ public  class DemoController {
         return new User("Anoop","Developer");
     }
     @PostMapping("/add-user")
-    public User addUser(@RequestBody User user){
-        return user;
+    public List<User> addUser(@RequestBody List<User> users){
+        return users;
     }
 
 
