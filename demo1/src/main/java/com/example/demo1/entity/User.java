@@ -1,10 +1,6 @@
 package com.example.demo1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -25,6 +21,10 @@ public class User {
     @NotBlank(message = "name cannot be empty")
     @Size(min=2,max=50,message="name must be 2 -50 characters")
     private String role;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     public User() {}
 
@@ -58,5 +58,13 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public Department getDepartment(){
+        return department;
+    }
+
+    public void setDepartment(Department department){
+        this.department = department;
     }
 }
