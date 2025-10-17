@@ -1,8 +1,10 @@
 package com.example.demo1.controller;
 
+import com.example.demo1.entity.Department;
 import com.example.demo1.entity.User;
 import jakarta.validation.Valid;
 import com.example.demo1.repository.UserRepository;
+import com.example.demo1.repository.DepartmentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,15 @@ import java.util.Optional;
 public class DemoController {
 
     private final UserRepository userRepository;
+    private final DepartmentRepository departmentRepository;
 
-    public DemoController(UserRepository userRepository) {
+    public DemoController(
+            UserRepository userRepository,
+            DepartmentRepository departmentRepository
+
+    ) {
         this.userRepository = userRepository;
+        this.departmentRepository=departmentRepository;
     }
 
     @GetMapping("/hello")
@@ -60,20 +68,19 @@ public class DemoController {
     @PutMapping("/update-user/{id}")
     public User updateUser(@Valid @PathVariable Long id, @RequestBody User newUserData) {
         Optional<User> existingUser = userRepository.findById(id);
-
-        // Replace this:
-        // if (existingUser.isEmpty()) {
-        //     throw new RuntimeException("User not found with id " + id);
-        // }
-
-        // With this:
         if (existingUser.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found with id " + id);
         }
-
         User user = existingUser.get();
+
         user.setName(newUserData.getName());
         user.setRole(newUserData.getRole());
+
+        if (newUserData.getDepartment() != null && newUserData.getDepartment().getId() != null) {
+            Department dept = departmentRepository.findById(newUserData.getDepartment().getId())
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department not found with id " + newUserData.getDepartment().getId()));
+            user.setDepartment(dept);
+        }
         return userRepository.save(user);
     }
 

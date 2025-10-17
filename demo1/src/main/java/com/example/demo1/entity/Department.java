@@ -1,5 +1,6 @@
 package com.example.demo1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -12,7 +13,9 @@ public class Department{
     private String name;
 
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private List<User> users;
+
 
     public Long getId(){
         return id;
@@ -34,6 +37,8 @@ public class Department{
     public void setUsers(List<User> user){
         this.users=user;
     }
+
+    //getter and setter department
 
 
 }
