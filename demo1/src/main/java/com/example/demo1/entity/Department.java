@@ -24,8 +24,8 @@ public class Department{
     public String getName(){
         return name;
     }
-    public void setName(){
-        this.name=name;
+    public void setName(String name){
+        this.name= this.name;
     }
 
     public List<User> getUsers(){

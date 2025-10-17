@@ -3,6 +3,10 @@ package com.example.demo1.controller;
 import com.example.demo1.entity.User;
 import jakarta.validation.Valid;
 import com.example.demo1.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +29,14 @@ public class DemoController {
     public String hello() {
         return "Hello World!";
     }
-
-    // Get all users from the database
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public Page<User> getUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy
+    ) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
+        return userRepository.findAll(pageable);
     }
 
 
