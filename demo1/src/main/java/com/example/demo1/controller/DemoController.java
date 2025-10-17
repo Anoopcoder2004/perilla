@@ -1,8 +1,10 @@
 package com.example.demo1.controller;
 
 import com.example.demo1.entity.User;
+import jakarta.validation.Valid;
 import com.example.demo1.repository.UserRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,20 +32,26 @@ public class DemoController {
         return userRepository.findAll();
     }
 
-    // Add a single user
+
+    // POST single user
     @PostMapping("/add-user")
-    public User addUser(@RequestBody User user) {
-        return userRepository.save(user);
+    public ResponseEntity<String> addUser(@Valid @RequestBody User user) {
+        User savedUser = userRepository.save(user);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body("User added successfully with id: " + savedUser.getId());
     }
+
 
     // Optional: Add multiple users at once
     @PostMapping("/add-users")
-    public List<User> addUsers(@RequestBody List<User> users) {
+    public List<User> addUsers( @Valid @RequestBody List<User> users) {
         return userRepository.saveAll(users);
+
     }
     // PUT — update a user by ID
     @PutMapping("/update-user/{id}")
-    public User updateUser(@PathVariable Long id, @RequestBody User newUserData) {
+    public User updateUser(@Valid @PathVariable Long id, @RequestBody User newUserData) {
         Optional<User> existingUser = userRepository.findById(id);
 
         // Replace this:
