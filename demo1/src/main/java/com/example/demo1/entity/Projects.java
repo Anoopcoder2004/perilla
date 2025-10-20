@@ -1,7 +1,9 @@
 package com.example.demo1.entity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
@@ -28,6 +30,11 @@ public class Projects {
 
     private String clientName;
     private Double budget;
+
+    // Hierarchy: Project → Phases
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference  // parent -> child
+    private List<Phase> phases;
 
     // Getters and Setters
     public UUID getProjectId() {
@@ -109,6 +116,9 @@ public class Projects {
     public void setBudget(Double budget) {
         this.budget = budget;
     }
+    public List<Phase> getPhases() { return phases; }
+    public void setPhases(List<Phase> phases) { this.phases = phases; }
+
 
 }
 // Enums
