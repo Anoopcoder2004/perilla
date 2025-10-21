@@ -15,8 +15,8 @@ public class Phase {
     private UUID phaseId;
     private String phaseName;
     private String phaseCode;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     private String status;
 
     // Phase.java
@@ -35,10 +35,10 @@ public class Phase {
     public void setPhaseCode(String phaseCode) { this.phaseCode = phaseCode; }
     public String getPhaseName() { return phaseName; }
     public void setPhaseName(String phaseName) { this.phaseName = phaseName; }
-    public LocalDate getStartDate() { return startDate; }
-    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
-    public LocalDate getEndDate() { return endDate; }
-    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+    public String getStartDate() { return startDate; }
+    public void setStartDate(String startDate) { this.startDate = startDate; }
+    public String getEndDate() { return endDate; }
+    public void setEndDate(String endDate) { this.endDate = endDate; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
     public Projects getProject() { return project; }

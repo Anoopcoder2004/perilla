@@ -17,8 +17,8 @@ public class Job {
     private String jobCode;
     private String jobName;
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
 
     private String status;
 
@@ -31,15 +31,15 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "phase_id")
+    @JsonManagedReference
     private Phase phase;
 
-    // 🆕 Rename "User" to "AssignedUser" to match your actual entity name
 // Job.java
     @ManyToMany
     @JoinTable(
             name = "job_users",
             joinColumns = @JoinColumn(name = "job_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId") // <--- matches AssignedUser.userId
     )
     @JsonManagedReference
     private List<AssignedUser> assignedUser;
@@ -57,11 +57,11 @@ public class Job {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public LocalDate getStartDate() { return startDate; }
-    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+    public String getStartDate() { return startDate; }
+    public void setStartDate(String startDate) { this.startDate = startDate; }
 
-    public LocalDate getEndDate() { return endDate; }
-    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+    public String getEndDate() { return endDate; }
+    public void setEndDate(String endDate) { this.endDate = endDate; }
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }

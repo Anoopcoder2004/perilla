@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = {"http://localhost:8080","http://localhost:4200"})
 @RestController
-@RequestMapping("/api/phases")
+@RequestMapping("/phases")
 public class PhaseController {
 
     private final PhaseService phaseService;
@@ -35,7 +35,7 @@ public class PhaseController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePhase(@PathVariable UUID id) {
+    public void deletePhase(@PathVariable UUID id){
         phaseService.deletePhase(id);
     }
     @PutMapping("/{id}")
@@ -46,5 +46,4 @@ public class PhaseController {
     public Phase patchPhase(@PathVariable UUID id, @RequestBody Map<String, Object> updates) {
         return phaseService.patchPhase(id, updates);
     }
-
 }

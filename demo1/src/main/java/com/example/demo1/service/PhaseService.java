@@ -71,10 +71,10 @@ public class PhaseService {
             existingPhase.setPhaseCode((String) updates.get("phaseCode"));
         }
         if (updates.containsKey("startDate")) {
-            existingPhase.setStartDate(LocalDate.parse((String) updates.get("startDate")));
+            existingPhase.setStartDate((String) updates.get("startDate"));
         }
         if (updates.containsKey("endDate")) {
-            existingPhase.setEndDate(LocalDate.parse((String) updates.get("endDate")));
+            existingPhase.setEndDate((String) updates.get("endDate"));
         }
         if (updates.containsKey("status")) {
             existingPhase.setStatus((String) updates.get("status"));
