@@ -16,17 +16,13 @@ public class Projects {
     private String projectCode;
     private String projectName;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
 
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
 
-    @Enumerated(EnumType.STRING)
-    private Priority priority;
+    private String priority;
 
     private String clientName;
     private Double budget;
@@ -61,14 +57,6 @@ public class Projects {
         this.projectName = projectName;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -85,19 +73,19 @@ public class Projects {
         this.endDate = endDate;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Priority getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
@@ -116,24 +104,15 @@ public class Projects {
     public void setBudget(Double budget) {
         this.budget = budget;
     }
-    public List<Phase> getPhases() { return phases; }
-    public void setPhases(List<Phase> phases) { this.phases = phases; }
+
+    public List<Phase> getPhases() {
+        return phases;
+    }
+
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
+    }
 
 
-}
-// Enums
-enum Status {
-    PLANNED,
-    IN_PROGRESS,
-    COMPLETED,
-    ON_HOLD,
-    BLOCK,
-    RE_OPEN
-}
 
-enum Priority {
-    LOW,
-    MEDIUM,
-    HIGH,
-    CRITICAL
 }

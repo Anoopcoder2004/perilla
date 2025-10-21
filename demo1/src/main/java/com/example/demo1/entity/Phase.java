@@ -13,14 +13,11 @@ public class Phase {
     @Id
     @GeneratedValue
     private UUID phaseId;
-
-    private String phaseCode;
     private String phaseName;
+    private String phaseCode;
     private LocalDate startDate;
     private LocalDate endDate;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
 
     // Phase.java
     @ManyToOne
@@ -42,8 +39,8 @@ public class Phase {
     public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
     public LocalDate getEndDate() { return endDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
-    public Status getStatus() { return status; }
-    public void setStatus(Status status) { this.status = status; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
     public Projects getProject() { return project; }
     public void setProject(Projects project) { this.project = project; }
     public List<Job> getJobs() { return jobs; }

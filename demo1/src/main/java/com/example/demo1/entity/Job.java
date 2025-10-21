@@ -20,8 +20,7 @@ public class Job {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @Enumerated(EnumType.STRING)
-    private Status status;
+    private String status;
 
     // 🆕 Additional fields required by JobService
     private String transactionType;   // 🆕 Type of transaction (e.g., Regular, Overtime)
@@ -64,8 +63,8 @@ public class Job {
     public LocalDate getEndDate() { return endDate; }
     public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
-    public Status getStatus() { return status; }
-    public void setStatus(Status status) { this.status = status; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     public Phase getPhase() { return phase; }
     public void setPhase(Phase phase) { this.phase = phase; }
