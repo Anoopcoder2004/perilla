@@ -27,10 +27,7 @@ public class Projects {
     private String clientName;
     private Double budget;
 
-    // Hierarchy: Project → Phases
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference  // parent -> child
-    private List<Phase> phases;
+
 
     // Getters and Setters
     public UUID getProjectId() {
@@ -101,17 +98,10 @@ public class Projects {
         return budget;
     }
 
-    public void setBudget(Double budget) {
+    public void setBudget(Double budget){
         this.budget = budget;
     }
 
-    public List<Phase> getPhases() {
-        return phases;
-    }
-
-    public void setPhases(List<Phase> phases) {
-        this.phases = phases;
-    }
 
 
 
