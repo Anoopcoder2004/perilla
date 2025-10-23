@@ -36,7 +36,7 @@ public class ProjectsController {
 
 
 
-    @GetMapping("/get-all-projects/{id}")
+    @GetMapping("/get-project/{id}")
     public Projects getProject(@PathVariable UUID id) {
         return projectsService.getProjectById(id);
     }
